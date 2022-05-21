@@ -12,5 +12,7 @@ public interface ParticipantRepository extends JpaRepository<Participant, Intege
     Participant findParticipantById(Long id);
     @Query(value="SELECT * from participants p INNER JOIN Participant_session sp ON p.id=sp.id_participant where sp.id_session=?1",nativeQuery = true)
     List<Participant> findBySessionsId(Long id);
+    @Query(value="SELECT * from participants p INNER JOIN Participant_session sp ON p.id=sp.id_participant where sp.id_session!=?1",nativeQuery = true)
+    List<Participant> findBySessionsNotId(Long id);
 
 }

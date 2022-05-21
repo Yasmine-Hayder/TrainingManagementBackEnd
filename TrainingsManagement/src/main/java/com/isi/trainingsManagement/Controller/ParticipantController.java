@@ -25,6 +25,11 @@ public class ParticipantController {
         List<Participant> users=participantService.findParticipantBySession(id);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
+    @GetMapping("/participant/find/{id}")
+    public ResponseEntity<List<Participant>> getNotParticipant (@PathVariable("id")Long id){
+        List<Participant> users=participantService.findNotParticipantById(id);
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
 
     @GetMapping("/participant/find")
     public ResponseEntity<List<Participant>> getParticipantById (){

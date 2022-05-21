@@ -39,8 +39,8 @@ public class ParticipantService {
         participantRepository.deleteParticipantById(id);
     }
 
-    public Participant findParticipantById(Long id){
-        return participantRepository.findParticipantById(id);
+    public List<Participant> findNotParticipantById(Long id){
+        return participantRepository.findBySessionsNotId(id);
     }
     public List<Participant> findParticipantBySession(Long id){
         return participantRepository.findBySessionsId(id);
