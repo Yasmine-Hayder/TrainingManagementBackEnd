@@ -4,6 +4,7 @@ package com.isi.trainingsManagement.Controller;
 import com.isi.trainingsManagement.Service.ParticipantService;
 
 import com.isi.trainingsManagement.model.Participant;
+import com.isi.trainingsManagement.model.Session;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,15 +20,15 @@ public class ParticipantController {
         this.participantService = participantService;
     }
 
-    @GetMapping("/participant/all")
-    public ResponseEntity<List<Participant>> getAllParticipant (){
-        List<Participant> users=participantService.findAllParticipant();
+    @GetMapping("/participant/all/{id}")
+    public ResponseEntity<List<Participant>> getAllParticipant (@PathVariable("id")Long id){
+        List<Participant> users=participantService.findParticipantBySession(id);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @GetMapping("/participant/find/{id}")
-    public ResponseEntity<Participant> getParticipantById (@PathVariable("id")Long id){
-        Participant users= participantService.findParticipantById(id);
+    @GetMapping("/participant/find")
+    public ResponseEntity<List<Participant>> getParticipantById (){
+        List<Participant> users= participantService.findAllParticipant();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
